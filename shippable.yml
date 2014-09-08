@@ -1,0 +1,10 @@
+language: python
+
+install:
+  - Rscript -e "install.packages('MSG', dep = TRUE)"
+
+script:
+  - curl https://raw.githubusercontent.com/yihui/r-shippable/master/r-cmd-check | bash
+
+after_failure:
+  - cd ..; for i in `ls *.Rcheck/00*`; do cat $i; done
